@@ -42,7 +42,9 @@ class TestCatalogDB(TestCase):
 
 
     def test_will_not_add_duplicate_artist(self):
-
+        # this test is correct and it's identifying 
+        # an error in your code - your add_artist
+        # function is not raising an error if duplicate name 
         artistName = 'Carl'
         artistEmail = 'Carl@gmail.com'
         self.db.add_artist(artistName, artistEmail)
@@ -52,8 +54,18 @@ class TestCatalogDB(TestCase):
             artistEmail = 'Carl@gmail.com'
             self.db.add_artist(artistName,artistEmail)
 
+
     def test_change_availability(self):
-        pass
+        # arrange....
+        self.db.add_artist('bob', 'b@b.com')  
+        self.db.add_artwork('Painting', 'bob') # assume it starts as available??
+
+        # action... 
+        self.db.change_availability('Painting')
+
+        # assert...
+        # TODO find painting in DB and assert it's not available
+
 
     def test_delete_artwork(self):
         pass

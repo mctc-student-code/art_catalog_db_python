@@ -28,7 +28,7 @@ class SQLCatalogDB():
                     con.execute('INSERT INTO artists VALUES (NULL, ?, ?)', (artistName, artistEmail))
                     print('\nArtist added to database')
                 else:
-                    print('\nArtist already exists in database')
+                    raise ArtistError(f'\nError inserting: cannot not add duplicate artist')
         except sqlite3.IntegrityError:
             raise ArtistError(f'\nError inserting: cannot not add duplicate artist')
         con.close()
